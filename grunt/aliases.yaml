@@ -1,0 +1,28 @@
+default:
+  - 'debug'
+
+# Compile all assets (coffeescript => javascript, etc.)
+compile:
+  - 'coffee'
+
+# Best to use while actively developing/editing
+# Also runs the test suite
+debug:
+  - 'compile'
+  - 'jshint'
+  - 'watch'
+
+# Hit the test suite once
+test:
+  - 'compile'
+  - 'jshint'
+  - 'mochaTest'
+
+# Script for release
+build: []
+
+
+# 'jshint',
+# 'concurrent:chrome',
+# 'connect:chrome',
+# 'watch'

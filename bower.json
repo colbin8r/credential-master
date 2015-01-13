@@ -1,0 +1,19 @@
+{
+  "name": "credential-master",
+  "version": "0.0.0",
+  "authors": [
+    "Colby Rogness <colby.rogness@modea.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "knockback": "~0.20.5"
+  }
+}

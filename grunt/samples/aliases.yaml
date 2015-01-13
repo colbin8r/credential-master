@@ -1,0 +1,10 @@
+default: []
+
+lint:
+  - 'jshint'
+  - 'csslint'
+
+build:
+  - 'lint'
+  - 'mocha'
+  - 'notify'
