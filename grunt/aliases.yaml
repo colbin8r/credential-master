@@ -39,8 +39,9 @@ test:
     - 'mochaTest'
 
 docs:
-  description: 'Look at the existing documenation.'
+  description: 'Look at the documenation.'
   tasks:
+    - 'build-documentation'
     - 'connect:docs'
 
 build-files:
