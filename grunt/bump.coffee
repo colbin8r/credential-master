@@ -2,14 +2,14 @@ module.exports =
 	options:
 		files: ['package.json', 'bower.json']
 		# updateConfigs: ['pkg', 'component']
-		commit: no
-		# commitMessage: 'Release %VERSION%'
-		# commitFiles: ['-a']
-		createTag: no
-		# tagName: '%VERSION%'
-		# tagMessage: 'Version %VERSION%'
+		commit: yes
+		commitMessage: 'Release %VERSION%'
+		commitFiles: ['-a']
+		createTag: yes
+		tagName: '%VERSION%'
+		tagMessage: 'Version %VERSION%'
 		push: no
-		# pushTo: 'upstream'
+		pushTo: 'origin'
 		globalReplace: yes # defaults to false, which is only the first occurrence
 		
 	# can use:
