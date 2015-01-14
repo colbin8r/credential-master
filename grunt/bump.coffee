@@ -8,7 +8,7 @@ module.exports =
 		createTag: yes
 		tagName: '%VERSION%'
 		tagMessage: 'Version %VERSION%'
-		push: no
+		push: yes
 		pushTo: 'origin'
 		globalReplace: yes # defaults to false, which is only the first occurrence
 		
