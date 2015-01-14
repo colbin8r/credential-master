@@ -56,7 +56,7 @@ linters:
     enabled: true
 
   ImportPath:
-    enabled: true
+    enabled: false # default: true
     leading_underscore: false
     filename_extension: false
 
@@ -138,7 +138,7 @@ linters:
 
   StringQuotes:
     enabled: true
-    style: single_quotes # or double_quotes
+    style: double_quotes # default: single_quotes
 
   TrailingSemicolon:
     enabled: false # default: true

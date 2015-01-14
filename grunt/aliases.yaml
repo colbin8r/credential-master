@@ -47,6 +47,7 @@ docs:
 build-files:
   description: 'Builds all code from source.'
   tasks:
+    - 'wiredep'             # update the dependencies in the source
     - 'test'                # compile and test all assets
     - 'clean:dist'          # delete the dist directory
     - 'copy:dist'           # copy everything from app to dist except scripts and styles
