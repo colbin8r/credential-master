@@ -1,0 +1,172 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<!-- Title purposely omitted -->
+	<!-- <title></title> -->
+	<!-- Theme shamelessly stolen from Sublime Text's Markdown Preview =) -->
+	<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<style type="text/css">
+		body {
+			background-color: #EEE;
+			margin: 2em 0;
+			font-size: 12pt;
+			font-family: "Helvetica Neue", "Helvetica", "Arial", "Hiragino Sans GB", sans-serif;
+			line-height: 150%;
+		}
+		blockquote {
+			font-size: inherit;
+		}
+		#container {
+			background-color: #FFF;
+			/*box-shadow: 0px 0px 10px #CCC;*/
+			/*border: 3px solid #DDD;*/
+			padding: 1em 2em;
+			box-shadow: 0 0 0.5em #e6e6e6 inset,0 0 0 1px #d3d3d3;
+			border-radius: 0.5em;
+			margin-bottom: 1em;
+		}
+		h1, h2, h3, h4, h5, h6 {
+			border-bottom: 1px solid #EEE;
+			padding-bottom: 0.25em;
+			font-weight: bold;
+			margin-top: 1em;
+		}
+		img {
+			border: 3px solid #e6e6e6;
+			padding: 1em;
+			box-shadow: 0px 0px 10px #d3d3d3;
+		}
+		@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+			img { zoom: 0.5; }
+		}
+	</style>
+</head>
+<body>
+	<div id="container" class="container">
+		<h1 id="about-this-guide">About This Guide</h1>
+<p>This guide documents the different <a href="http://gruntjs.com/">Grunt</a> tasks available in this project. You should, of course, preface each of these commands with <code>grunt</code>. If this is your first time using this project, you should install all the dependencies grunt needs with <code>npm intall</code>.</p>
+<h1 id="main-tasks">Main Tasks</h1>
+<p>These are the main tasks to use on a day-to-day basis. Generally, they are simply sequences of the other commands string together to fit a certain situation.</p>
+<h2 id="-build-"><code>build</code></h2>
+<p>The build task is used to create a production-ready release in <code>dist</code> folder.</p>
+<p>This task bumps the patch version number. There are variations of this task that bump the major and minor versions instead, and there is a pre-release task for release candidates.</p>
+<p>Before the build process begins, your source will also be relinted, recompiled, and retested to avoid building erroneous code.</p>
+<ol>
+<li>Compile scripts and styles</li>
+<li>Lint and ensure passing test suite</li>
+<li>Delete any existing <code>dist</code> directory</li>
+<li>Copy <code>app</code> to <code>dist</code> (but not source files: .coffee, .sass, .scss, .js, or .css)</li>
+<li>Read HTML files for script and style assets</li>
+<li>Concatenate scripts and styles</li>
+<li>Minify CSS</li>
+<li>Uglify JS</li>
+<li>Copy the built scripts and styles into <code>dist</code></li>
+<li>Remove temporary files</li>
+<li>Bump verison number (patch number)</li>
+<li>Generate changelog</li>
+<li>Generate styleguide</li>
+</ol>
+<h3 id="-build-major-"><code>build-major</code></h3>
+<p>Same as the normal build task, but bumps the major version number for a brand-new release.</p>
+<h3 id="-build-minor-"><code>build-minor</code></h3>
+<p>Same as the normal build task, but bumps the minor version number instead.</p>
+<h3 id="-build-prerelease-"><code>build-prerelease</code></h3>
+<p>Same as the normal build task in that it bumps the normal patch number, but it also appends or bumps a release-candidate number (e.g. the &quot;-1&quot; in &quot;1.0.0-1&quot;) to the version.</p>
+<h2 id="-server-"><code>server</code></h2>
+<p>The server task is used to run a webserver so you can view local changes. It&#39;s handy when actively developing a project. It also watches local files for changes and compiles them as needed (see the watch task), and it supports live reload so your changes appear without refreshing the page.</p>
+<p>Be sure to <a href="https://github.com/gruntjs/grunt-contrib-watch/blob/master/docs/watch-examples.md#enabling-live-reload-in-your-html">have live reload set-up in your HTML</a>.</p>
+<p>This task is also the default task (i.e. the task run when you just run <code>grunt</code> with no task specified).</p>
+<ol>
+<li><code>compile</code></li>
+<li>Open webserver</li>
+<li><code>watch</code></li>
+</ol>
+<h2 id="-test-"><code>test</code></h2>
+<p>The test task is used to run the test suite just a single time. To ensure that the compiled code is up to date with the source, the task will recompile all assets--which will also lint the source.</p>
+<p>This task is a great way to check if your source:</p>
+<ul>
+<li>is properly linted</li>
+<li>can compile</li>
+<li>passes the test suite</li>
+</ul>
+<p>If your code has bugs, this is a great place to start finding them.</p>
+<h2 id="-docs-"><code>docs</code></h2>
+<p>The docs task gives you a quick look at the already-generated documentation and styleguide. It serves the existing docs from a local web server.</p>
+<h1 id="subroutines">Subroutines</h1>
+<p>These are tasks that are often employed by other tasks, but can be safely used as standalone tasks. They can be handy if you aren&#39;t going through a typical process for which a main task has already been created (e.g. building a release, developing using a server, etc.)</p>
+<h2 id="-compile-"><code>compile</code></h2>
+<p>The compile task is used to compile all assets from the <code>src</code> folder into the <code>app</code> folder.</p>
+<ol>
+<li>Compile all CoffeeScript scripts</li>
+<li>Compile all CoffeeScript tests</li>
+<li>Compile all SCSS styles</li>
+</ol>
+<h2 id="-lint-"><code>lint</code></h2>
+<p>The lint task is used to lint all scripts, styles, and tests.</p>
+<ol>
+<li>Lint all CoffeeScript scripts</li>
+<li>Lint all CoffeeScript tests</li>
+<li>Lint all SCSS styles</li>
+</ol>
+<h2 id="-watch-"><code>watch</code></h2>
+<p>The watch task is used to watch for changes to scripts, styles, and tests. When you change your source files, the new files are automatically created and updated.</p>
+<p><strong>Scripts</strong>
+When a change is detected to a script (excluding test scripts, which are handled slightly differently), the task:</p>
+<ol>
+<li>Lints the CoffeeScript</li>
+<li>Compiles the CoffeeScript into JavaScript</li>
+<li>Runs the test suite</li>
+</ol>
+<p><strong>Styles</strong>
+When a change is detected to a style, the task:</p>
+<ol>
+<li>Lints the SCSS</li>
+<li>Compiles the SCSS into CSS</li>
+</ol>
+<p><strong>Tests</strong>
+When a change is detected to a test script, the task:</p>
+<ol>
+<li>Lints the CoffeeScript test suite</li>
+<li>Compiles the CoffeeScript test suite into JavaScript</li>
+<li>Runs the test suite</li>
+</ol>
+<h2 id="-styleguide-"><code>styleguide</code></h2>
+<p>This task forces the regeneration of the styleguide.</p>
+<h2 id="cleaning">Cleaning</h2>
+<p>These scripts can be used to erase certain folders when they aren&#39;t needed.</p>
+<h3 id="-clean-tmp-"><code>clean:tmp</code></h3>
+<p>Delete the <code>.tmp</code> directory. The <code>.tmp</code> folder is used to house temporary files during the build process, but after the build process completes, the files are no longer needed (they&#39;ve been further processed and copied elsewhere). This folder can be safely deleted at any time; it is rebuild by the build process every time.</p>
+<p>The build process includes a call to this this task.</p>
+<h3 id="-clean-dist-"><code>clean:dist</code></h3>
+<p>Delete the <code>dist</code> directory. The <code>dist</code> folder is a complete distribution ready to be implemented live that includes compiled, concatenated, and minified source files (and no transient source files either).</p>
+<p>Build script
+  Compile
+    CoffeeScript
+    SCSS
+  Minify
+    JS
+    CSS
+    HTML
+    Images
+  Concatenate
+  Run tests
+  Bump version
+  Changelog
+  KSS style guide
+  Git commit and tag (or --skip-git?)</p>
+
+	</div>
+	<footer class="container">
+		<p class="text-muted text-center">
+			Markdown Preview Theme designed by <a href="https://twitter.com/hozaka" target="_blank">@hozaka</a>.
+		</p>
+	</footer>
+</body>
+</html>
+
+<script type="text/javascript">
+$(document).ready( function() {
+	$('table').addClass('table table-bordered');
+});
+</script>

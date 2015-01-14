@@ -1,28 +1,90 @@
-default:
-  - 'debug'
+# default:
+#   - 'debug'
 
-# Compile all assets (coffeescript => javascript, etc.)
-compile:
-  - 'coffee'
+# build:
+#   - 'coffee:scripts'
+#   - 'sass:styles'
 
-# Best to use while actively developing/editing
-# Also runs the test suite
-debug:
+# watch:
+#   - 'watch:'
+
+server:
+  description: 'Run a webserver to view local changes in real-time.'
+  tasks:
   - 'compile'
-  - 'jshint'
+  - 'connect:server'
   - 'watch'
 
-# Hit the test suite once
+compile:
+  description: 'Compile all assets from the src folder into the app folder.'
+  tasks:
+  - 'coffee:scripts'
+  - 'coffee:tests'
+  - 'sass:styles'
+
+lint:
+  description: 'Lint all scripts and styles, including tests.'
+  tasks:
+    - 'coffeelint:scripts'
+    - 'scsslint:styles'
+    - 'coffeelint:tests'
+
 test:
-  - 'compile'
-  - 'jshint'
-  - 'mochaTest'
+  description: 'Run the test suite once.'
+  tasks:
+    - 'lint'
+    - 'compile'
+    - 'mochaTest'
 
-# Script for release
-build: []
+docs:
+  description: 'Look at the existing documenation.'
+  tasks:
+    - 'connect:docs'
 
+build-files:
+  description: 'Builds all code from source.'
+  tasks:
+    - 'test'                # compile and test all assets
+    - 'clean:dist'          # delete the dist directory
+    - 'copy:dist'           # copy everything from app to dist except scripts and styles
+    - 'useminPrepare:dist'  # create concat/minify/uglify configs from the blocks in dist html files
+    - 'concat:generated'    # concatenate scripts and styles
+    - 'cssmin:generated'    # minifiy css
+    - 'uglify:generated'    # uglify js
+    - 'usemin:dist'         # copy the generated files back to dist
+    - 'clean:tmp'           # delete the temporary usemin files we just copied
 
-# 'jshint',
-# 'concurrent:chrome',
-# 'connect:chrome',
-# 'watch'
+build-documentation:
+  description: 'Regenerates all code documentation.'
+  tasks:
+  - 'changelog'           # generate/update the changelog
+  - 'styleguide'          # generate/update the styleguide
+  - 'markdown:docs'       # convert markdown documents to html
+
+build:
+  description: 'Create a production-ready release in the dist folder.'
+  tasks:
+    - 'build-files'
+    - 'bump:patch'          # increment the patch number
+    - 'build-documentation'
+
+build-major:
+  description: 'Create a production-ready release in the dist folder, incrementing the major version number.'
+  tasks:
+    - 'build-files'
+    - 'bump:major'          # increment the major number
+    - 'build-documentation'
+
+build-minor:
+  description: 'Create a production-ready release in the dist folder, incrementing the minor version number.'
+  tasks:
+    - 'build-files'
+    - 'bump:minor'          # increment the minor number
+    - 'build-documentation'
+
+build-prerelease:
+  description: 'Create a production-ready release in the dist folder, incrementing the prerelease version number.'
+  tasks:
+    - 'build-files'
+    - 'bump:prerelease'          # increment the prerelease number
+    - 'build-documentation'

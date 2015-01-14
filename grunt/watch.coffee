@@ -1,16 +1,32 @@
 module.exports =
-	coffee:
+	scripts:
 		files: [
-			'<%= config.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}',
-			'<%= config.test %>/spec/{,*/}*.{coffee,litcoffee,coffee.md}'
+			'<%= config.src %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'
 		]
-		tasks: ['coffee:compile']
+		tasks: ['coffeelint:scripts', 'coffee:scripts']
 		options:
 			spawn: no
-	test:
+			livereload: yes
+	styles:
 		files: [
-			'<%= config.app %>/scripts/{,*/}*.js',
-			'<%= config.test %>/spec/{,*/}*.js'
+			'<%= config.src %>/styles/{,*/}*.{sass,scss}'
+		]
+		tasks: ['scsslint:styles', 'sass:styles']
+		options:
+			spawn: no
+			livereload: yes
+	testsCompile:
+		files: [
+			'<%= config.test %>/spec/{,*/}*.{coffee,litcoffee,coffee.md}'
+		]
+		tasks: ['coffeelint:tests', 'coffee:tests']
+		options:
+			spawn: no
+	testsRun:
+		files: [
+			# '<%= config.app %>/scripts/{,*/}*.js',
+			'<%= config.src %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}',
+			'<%= config.test %>/spec/{,*/}*.{coffee,litcoffee,coffee.md}'
 		]
 		tasks: ['mochaTest']
 		options:

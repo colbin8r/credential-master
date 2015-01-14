@@ -1,15 +1,21 @@
 module.exports =
-	sample:
+	server:
 		options:
 			port: 8000
 			hostname: 'localhost'
-			base: 'app'
+			base: '<%= config.app %>'
 			open: true
-	test:
+	docs:
 		options:
-			open: false
-			port: 3000
-			base: [
-				'test',
-				'<%= config.app %>'
-			]
+			hostname: 'localhost'
+			base: '<%= config.docs %>/gen'
+			open: true
+			keepalive: true
+	# test:
+	# 	options:
+	# 		open: false
+	# 		port: 3000
+	# 		base: [
+	# 			'test',
+	# 			'<%= config.app %>'
+	# 		]
