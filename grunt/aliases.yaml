@@ -65,26 +65,30 @@ build:
   description: 'Create a production-ready release in the dist folder.'
   tasks:
     - 'build-files'
-    - 'bump:patch'          # increment the patch number
+    - 'bump-only:patch'          # increment the patch number
     - 'build-documentation'
+    - 'bump-commit'
 
 build-major:
   description: 'Create a production-ready release in the dist folder, incrementing the major version number.'
   tasks:
     - 'build-files'
-    - 'bump:major'          # increment the major number
+    - 'bump-only:major'          # increment the major number
     - 'build-documentation'
+    - 'bump-commit'
 
 build-minor:
   description: 'Create a production-ready release in the dist folder, incrementing the minor version number.'
   tasks:
     - 'build-files'
-    - 'bump:minor'          # increment the minor number
+    - 'bump-only:minor'          # increment the minor number
     - 'build-documentation'
+    - 'bump-commit'
 
 build-prerelease:
   description: 'Create a production-ready release in the dist folder, incrementing the prerelease version number.'
   tasks:
     - 'build-files'
-    - 'bump:prerelease'          # increment the prerelease number
+    - 'bump-only:prerelease'          # increment the prerelease number
     - 'build-documentation'
+    - 'bump-commit'
