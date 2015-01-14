@@ -8,6 +8,8 @@
 # watch:
 #   - 'watch:'
 
+default: 'server'
+
 server:
   description: 'Run a webserver to view local changes in real-time.'
   tasks:
