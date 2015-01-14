@@ -8,6 +8,7 @@ module.exports = (grunt) -> require('load-grunt-config') grunt,
             dist: 'dist'
             docs: 'docs'
             tmp: '.tmp'
+            cache: '.cache'
     # loadGruntTasks:
     #   pattern: 'grunt-*'
     #   config: require './package.json'

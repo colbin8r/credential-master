@@ -2,6 +2,7 @@ module.exports =
 	options:
 		sourcemap: 'none'
 		style: 'expanded' # nested, compact, compressed, expanded
+		cacheLocation: '<%= config.cache %>/.sass-cache'
 	styles:
 		expand: yes
 		flatten: no
