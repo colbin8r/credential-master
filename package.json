@@ -32,5 +32,25 @@
   },
   "engines": {
     "node": ">=0.8.0"
-  }
+  },
+  "main": "dist/index.html",
+  "directories": {
+    "doc": "docs",
+    "test": "test",
+    "src": "src",
+    "app": "app",
+    "dist": "dist"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://colbin8r@github.com/colbin8r/credential-master.git"
+  },
+  "author": "Colby Rogness <colbyrogness@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/colbin8r/credential-master/issues"
+  },
+  "homepage": "https://github.com/colbin8r/credential-master"
 }
