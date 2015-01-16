@@ -1,5 +1,4 @@
 (function() {
-  'use strict';
-  console.log('hello there');
+  console.log('hello world');
 
 }).call(this);

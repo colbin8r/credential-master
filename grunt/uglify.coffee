@@ -8,10 +8,10 @@ module.exports =
     #   src: '{,*/}*.js',
     #   dest: '<%= config.app %>/scripts',
     #   ext: '.min.js',
-    scripts:
-        files: [
-            {
-                dest: '<%= config.dist %>/scripts/build.js'
-                src: '<%= config.tmp %>/scripts/build.js'
-            }
-        ]
+    # scripts:
+    #     files: [
+    #         {
+    #             dest: '<%= config.dist %>/scripts/min.js'
+    #             src: '<%= config.tmp %>/scripts/build.js'
+    #         }
+    #     ]

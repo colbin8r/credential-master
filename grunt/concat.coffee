@@ -10,3 +10,10 @@ module.exports =
                 src: '<%= config.app %>/styles/**'
             }
         ]
+    # scripts:
+    #     files: [
+    #         {
+    #             dest: '<%= config.tmp %>/scripts/build.js'
+    #             src: '<%= config.app %>/scripts/**'
+    #         }
+    #     ]

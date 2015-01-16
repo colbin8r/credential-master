@@ -10,35 +10,34 @@ These are the main tasks to use on a day-to-day basis. Generally, they are simpl
 
 The build task is used to create a production-ready release in `dist` folder.
 
-This task bumps the patch version number. There are variations of this task that bump the major and minor versions instead, and there is a pre-release task for release candidates.
+This task bumps the _patch_ version number. There are variations of this task that bump the major and minor versions instead, and there is a pre-release task for release candidates.
 
 Before the build process begins, your source will also be relinted, recompiled, and retested to avoid building erroneous code.
 
-1. Compile scripts and styles
-2. Lint and ensure passing test suite
-3. Delete any existing `dist` directory
-4. Copy `app` to `dist` (but not source files: .coffee, .sass, .scss, .js, or .css)
-5. Read HTML files for script and style assets
-6. Concatenate scripts and styles
-7. Minify CSS
-8. Uglify JS
-9. Copy the built scripts and styles into `dist`
-10. Remove temporary files
-11. Bump verison number (patch number)
-12. Generate changelog
-13. Generate styleguide
+1. Update dependencies in the source (e.g. HTML files, CSS files, etc.)
+2. Compile scripts and styles
+3. Lint and ensure passing test suite
+4. Delete any existing `dist` directory
+5. Copy `app` to `dist` (but not source files: .coffee, .sass, .scss, .js, or .css)
+6. Concatenate and minify styles
+7. Optimize, concatenate, and minify scripts
+8. Copy the built scripts and styles into `dist`
+9. Remove temporary files
+10. Bump verison number (patch number)
+11. Generate changelog
+12. Generate styleguide
 
 ### `build-major` ###
 
-Same as the normal build task, but bumps the major version number for a brand-new release.
+Same as the normal build task, but bumps the _major_ version number for a brand-new release.
 
 ### `build-minor` ###
 
-Same as the normal build task, but bumps the minor version number instead.
+Same as the normal build task, but bumps the _minor_ version number instead.
 
 ### `build-prerelease` #
 
-Same as the normal build task in that it bumps the normal patch number, but it also appends or bumps a release-candidate number (e.g. the "-1" in "1.0.0-1") to the version.
+Same as the normal build task in that it bumps the normal patch number (if it's zero), but it also appends or bumps a _release-candidate_ number (e.g. the "-1" in "1.0.0-1") to the version.
 
 ## `server` ##
 
@@ -67,6 +66,10 @@ If your code has bugs, this is a great place to start finding them.
 
 The docs task gives you a quick look at the documentation and styleguide. It will regenerate a fresh set of documentation before viewing. It serves the docs from a local web server for your viewing pleasure.
 
+## `bowerRequirejs` ##
+
+This task updates the requirejs configuration to include grunt packages and their dependencies. It should be run every time a new bower package intended to be loaded by requirejs is installed.
+
 # Subroutines #
 
 These are tasks that are often employed by other tasks, but can be safely used as standalone tasks. They can be handy if you aren't going through a typical process for which a main task has already been created (e.g. building a release, developing using a server, etc.)
@@ -89,33 +92,52 @@ The lint task is used to lint all scripts, styles, and tests.
 
 ## `watch` ##
 
-The watch task is used to watch for changes to scripts, styles, and tests. When you change your source files, the new files are automatically created and updated.
+The watch task is used to watch for changes to scripts, styles, and tests. When you change your source files, the new files are automatically created and updated. This should probably be used in conjunction with a live development server, but it can be used standalone as well.
 
-**Scripts**
+**Scripts**  
 When a change is detected to a script (excluding test scripts, which are handled slightly differently), the task:
 
 1. Lints the CoffeeScript
 2. Compiles the CoffeeScript into JavaScript
 3. Runs the test suite
 
-**Styles**
+**Styles**  
 When a change is detected to a style, the task:
 1. Lints the SCSS
 2. Compiles the SCSS into CSS
 
-**Tests**
+**Tests**  
 When a change is detected to a test script, the task:
 1. Lints the CoffeeScript test suite
 2. Compiles the CoffeeScript test suite into JavaScript
 3. Runs the test suite
 
-## `styleguide` ##
+## Build Subprocesses ##
+
+There are tasks that can mimick parts of the build process without actually comitting or changing version numbers. The most helpfully of these is probably `build-files`.
+
+### `build-files` ###
+
+This task does the heavy lifting of the build process. It produces everything in the distribution directory. You can use this task to generate a distribution directory just like the full `build` task does to ensure everything works as expected.
+
+(It may be handy to clean-up after this task by deleting the distribution directory with `clean:dist`, or by resetting it in version control.)
+
+### `build-documentation` ###
+
+This task generates a fresh set of documentation, including:
+- changelog
+- styleguide
+- converting markdown files in the documentation folder into pretty HTML files
+
+It's used in the final stages of the build process to ensure all documentation is up to date. It might be helpful to use if the documentation is updated, and you want to commit the new versions along with your code.
+
+### `styleguide` ###
 
 This task forces the regeneration of the styleguide.
 
 ## Cleaning ##
 
-These scripts can be used to erase certain folders when they aren't needed.
+These tasks can be used to erase (or clean out) certain folders when they aren't needed.
 
 ### `clean:tmp` ###
 
@@ -126,21 +148,3 @@ The build process includes a call to this this task.
 ### `clean:dist` ###
 
 Delete the `dist` directory. The `dist` folder is a complete distribution ready to be implemented live that includes compiled, concatenated, and minified source files (and no transient source files either).
-
-Build script
-  Compile
-    CoffeeScript
-    SCSS
-  Minify
-    JS
-    CSS
-    HTML
-    Images
-  Concatenate
-  Run tests
-  Bump version
-  Changelog
-  KSS style guide
-  Git commit and tag (or --skip-git?)
-
-

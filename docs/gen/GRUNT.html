@@ -50,17 +50,16 @@
 <p>These are the main tasks to use on a day-to-day basis. Generally, they are simply sequences of the other commands string together to fit a certain situation.</p>
 <h2 id="-build-"><code>build</code></h2>
 <p>The build task is used to create a production-ready release in <code>dist</code> folder.</p>
-<p>This task bumps the patch version number. There are variations of this task that bump the major and minor versions instead, and there is a pre-release task for release candidates.</p>
+<p>This task bumps the <em>patch</em> version number. There are variations of this task that bump the major and minor versions instead, and there is a pre-release task for release candidates.</p>
 <p>Before the build process begins, your source will also be relinted, recompiled, and retested to avoid building erroneous code.</p>
 <ol>
+<li>Update dependencies in the source (e.g. HTML files, CSS files, etc.)</li>
 <li>Compile scripts and styles</li>
 <li>Lint and ensure passing test suite</li>
 <li>Delete any existing <code>dist</code> directory</li>
 <li>Copy <code>app</code> to <code>dist</code> (but not source files: .coffee, .sass, .scss, .js, or .css)</li>
-<li>Read HTML files for script and style assets</li>
-<li>Concatenate scripts and styles</li>
-<li>Minify CSS</li>
-<li>Uglify JS</li>
+<li>Concatenate and minify styles</li>
+<li>Optimize, concatenate, and minify scripts</li>
 <li>Copy the built scripts and styles into <code>dist</code></li>
 <li>Remove temporary files</li>
 <li>Bump verison number (patch number)</li>
@@ -68,11 +67,11 @@
 <li>Generate styleguide</li>
 </ol>
 <h3 id="-build-major-"><code>build-major</code></h3>
-<p>Same as the normal build task, but bumps the major version number for a brand-new release.</p>
+<p>Same as the normal build task, but bumps the <em>major</em> version number for a brand-new release.</p>
 <h3 id="-build-minor-"><code>build-minor</code></h3>
-<p>Same as the normal build task, but bumps the minor version number instead.</p>
+<p>Same as the normal build task, but bumps the <em>minor</em> version number instead.</p>
 <h3 id="-build-prerelease-"><code>build-prerelease</code></h3>
-<p>Same as the normal build task in that it bumps the normal patch number, but it also appends or bumps a release-candidate number (e.g. the &quot;-1&quot; in &quot;1.0.0-1&quot;) to the version.</p>
+<p>Same as the normal build task in that it bumps the normal patch number (if it&#39;s zero), but it also appends or bumps a <em>release-candidate</em> number (e.g. the &quot;-1&quot; in &quot;1.0.0-1&quot;) to the version.</p>
 <h2 id="-server-"><code>server</code></h2>
 <p>The server task is used to run a webserver so you can view local changes. It&#39;s handy when actively developing a project. It also watches local files for changes and compiles them as needed (see the watch task), and it supports live reload so your changes appear without refreshing the page.</p>
 <p>Be sure to <a href="https://github.com/gruntjs/grunt-contrib-watch/blob/master/docs/watch-examples.md#enabling-live-reload-in-your-html">have live reload set-up in your HTML</a>.</p>
@@ -92,7 +91,9 @@
 </ul>
 <p>If your code has bugs, this is a great place to start finding them.</p>
 <h2 id="-docs-"><code>docs</code></h2>
-<p>The docs task gives you a quick look at the already-generated documentation and styleguide. It serves the existing docs from a local web server.</p>
+<p>The docs task gives you a quick look at the documentation and styleguide. It will regenerate a fresh set of documentation before viewing. It serves the docs from a local web server for your viewing pleasure.</p>
+<h2 id="-bowerrequirejs-"><code>bowerRequirejs</code></h2>
+<p>This task updates the requirejs configuration to include grunt packages and their dependencies. It should be run every time a new bower package intended to be loaded by requirejs is installed.</p>
 <h1 id="subroutines">Subroutines</h1>
 <p>These are tasks that are often employed by other tasks, but can be safely used as standalone tasks. They can be handy if you aren&#39;t going through a typical process for which a main task has already been created (e.g. building a release, developing using a server, etc.)</p>
 <h2 id="-compile-"><code>compile</code></h2>
@@ -110,51 +111,46 @@
 <li>Lint all SCSS styles</li>
 </ol>
 <h2 id="-watch-"><code>watch</code></h2>
-<p>The watch task is used to watch for changes to scripts, styles, and tests. When you change your source files, the new files are automatically created and updated.</p>
-<p><strong>Scripts</strong>
-When a change is detected to a script (excluding test scripts, which are handled slightly differently), the task:</p>
+<p>The watch task is used to watch for changes to scripts, styles, and tests. When you change your source files, the new files are automatically created and updated. This should probably be used in conjunction with a live development server, but it can be used standalone as well.</p>
+<p><strong>Scripts</strong><br>When a change is detected to a script (excluding test scripts, which are handled slightly differently), the task:</p>
 <ol>
 <li>Lints the CoffeeScript</li>
 <li>Compiles the CoffeeScript into JavaScript</li>
 <li>Runs the test suite</li>
 </ol>
-<p><strong>Styles</strong>
-When a change is detected to a style, the task:</p>
+<p><strong>Styles</strong><br>When a change is detected to a style, the task:</p>
 <ol>
 <li>Lints the SCSS</li>
 <li>Compiles the SCSS into CSS</li>
 </ol>
-<p><strong>Tests</strong>
-When a change is detected to a test script, the task:</p>
+<p><strong>Tests</strong><br>When a change is detected to a test script, the task:</p>
 <ol>
 <li>Lints the CoffeeScript test suite</li>
 <li>Compiles the CoffeeScript test suite into JavaScript</li>
 <li>Runs the test suite</li>
 </ol>
-<h2 id="-styleguide-"><code>styleguide</code></h2>
+<h2 id="build-subprocesses">Build Subprocesses</h2>
+<p>There are tasks that can mimick parts of the build process without actually comitting or changing version numbers. The most helpfully of these is probably <code>build-files</code>.</p>
+<h3 id="-build-files-"><code>build-files</code></h3>
+<p>This task does the heavy lifting of the build process. It produces everything in the distribution directory. You can use this task to generate a distribution directory just like the full <code>build</code> task does to ensure everything works as expected.</p>
+<p>(It may be handy to clean-up after this task by deleting the distribution directory with <code>clean:dist</code>, or by resetting it in version control.)</p>
+<h3 id="-build-documentation-"><code>build-documentation</code></h3>
+<p>This task generates a fresh set of documentation, including:</p>
+<ul>
+<li>changelog</li>
+<li>styleguide</li>
+<li>converting markdown files in the documentation folder into pretty HTML files</li>
+</ul>
+<p>It&#39;s used in the final stages of the build process to ensure all documentation is up to date. It might be helpful to use if the documentation is updated, and you want to commit the new versions along with your code.</p>
+<h3 id="-styleguide-"><code>styleguide</code></h3>
 <p>This task forces the regeneration of the styleguide.</p>
 <h2 id="cleaning">Cleaning</h2>
-<p>These scripts can be used to erase certain folders when they aren&#39;t needed.</p>
+<p>These tasks can be used to erase (or clean out) certain folders when they aren&#39;t needed.</p>
 <h3 id="-clean-tmp-"><code>clean:tmp</code></h3>
 <p>Delete the <code>.tmp</code> directory. The <code>.tmp</code> folder is used to house temporary files during the build process, but after the build process completes, the files are no longer needed (they&#39;ve been further processed and copied elsewhere). This folder can be safely deleted at any time; it is rebuild by the build process every time.</p>
 <p>The build process includes a call to this this task.</p>
 <h3 id="-clean-dist-"><code>clean:dist</code></h3>
 <p>Delete the <code>dist</code> directory. The <code>dist</code> folder is a complete distribution ready to be implemented live that includes compiled, concatenated, and minified source files (and no transient source files either).</p>
-<p>Build script
-  Compile
-    CoffeeScript
-    SCSS
-  Minify
-    JS
-    CSS
-    HTML
-    Images
-  Concatenate
-  Run tests
-  Bump version
-  Changelog
-  KSS style guide
-  Git commit and tag (or --skip-git?)</p>
 
 	</div>
 	<footer class="container">

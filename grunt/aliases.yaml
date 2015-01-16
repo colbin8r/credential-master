@@ -49,12 +49,12 @@ build-files:
   tasks:
     - 'wiredep'             # update the dependencies in the source
     - 'test'                # compile and test all assets
-    - 'clean:dist'          # delete the dist directory
+    - 'clean:dist'          # delete the dist directory to start fresh
     - 'copy:dist'           # copy everything from app to dist except scripts and styles
     - 'useminPrepare:dist'  # create concat/minify/uglify configs from the blocks in dist html files
-    - 'concat:generated'    # concatenate scripts and styles
+    - 'concat:generated'    # concatenate styles
     - 'cssmin:generated'    # minifiy css
-    - 'uglify:generated'    # uglify js
+    - 'requirejs:dist'      # concatenate and minify scripts with r.js optimizer
     - 'usemin:dist'         # copy the generated files back to dist
     - 'clean:tmp'           # delete the temporary usemin files we just copied
 
