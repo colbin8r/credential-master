@@ -3,9 +3,88 @@
 // Configure RequireJS with Bower components--update with "grunt bowerRequirejs"
 require.config({
   shim: {
-
+    affix: {
+      deps: [
+        'jquery'
+      ]
+    },
+    alert: {
+      deps: [
+        'jquery'
+      ]
+    },
+    button: {
+      deps: [
+        'jquery'
+      ]
+    },
+    carousel: {
+      deps: [
+        'jquery'
+      ]
+    },
+    collapse: {
+      deps: [
+        'jquery'
+      ]
+    },
+    dropdown: {
+      deps: [
+        'jquery'
+      ]
+    },
+    tab: {
+      deps: [
+        'jquery'
+      ]
+    },
+    transition: {
+      deps: [
+        'jquery'
+      ]
+    },
+    scrollspy: {
+      deps: [
+        'jquery'
+      ]
+    },
+    modal: {
+      deps: [
+        'jquery'
+      ]
+    },
+    tooltip: {
+      deps: [
+        'jquery'
+      ]
+    },
+    popover: {
+      deps: [
+        'jquery'
+      ]
+    },
+    jquery: {
+      exports: '$'
+    },
+    knockback: {
+      deps: [
+        'backbone',
+        'knockout',
+        'underscore'
+      ],
+      exports: 'kb'
+    },
+    backbone: {
+      exports: 'Backbone'
+    },
+    underscore: {
+      exports: '_'
+    },
+    knockout: {
+      exports: 'ko'
+    }
   },
-  baseUrl: '/',
+  baseUrl: '/scripts',
   paths: {
     affix: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix',
     alert: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert',
@@ -20,9 +99,16 @@ require.config({
     tooltip: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip',
     popover: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover',
     jquery: '../../bower_components/jquery/dist/jquery',
-    knockback: '../../bower_components/knockback/knockback'
+    knockback: '../../bower_components/knockback/knockback',
+    almond: '../../bower_components/almond/almond',
+    backbone: '../../bower_components/backbone/backbone',
+    underscore: '../../bower_components/underscore/underscore',
+    knockout: '../../bower_components/knockout/dist/knockout'
   },
   packages: [
 
+  ],
+  deps: [
+    'main' // loads the main script/main.js script after configuring
   ]
 });

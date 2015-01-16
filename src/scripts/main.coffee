@@ -1,2 +1,2 @@
-require ['other', 'jquery'], ->
-    console.log 'hello world'
+require ['jquery', 'collapse'], ($) ->
+    console.log 'howdy'

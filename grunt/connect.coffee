@@ -3,7 +3,7 @@ module.exports =
 		options:
 			port: 8000
 			hostname: 'localhost'
-			base: '<%= config.app %>'
+			base: ['<%= config.app %>', '.']
 			open: true
 	docs:
 		options:
