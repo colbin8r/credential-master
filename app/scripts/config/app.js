@@ -1,4 +1,5 @@
 (function() {
-  console.log('hello world');
+  define;
+
 
 }).call(this);

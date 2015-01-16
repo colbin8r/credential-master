@@ -1,6 +1,6 @@
 (function() {
-  require(['other', 'affix'], function() {
-    return console.log('hello world');
+  require(['jquery', 'collapse'], function($) {
+    return console.log('howdy');
   });
 
 }).call(this);
