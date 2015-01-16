@@ -41,7 +41,6 @@ test:
 docs:
   description: 'Look at the documenation.'
   tasks:
-    - 'build-documentation'
     - 'connect:docs'
 
 build-files:
