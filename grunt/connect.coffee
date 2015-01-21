@@ -5,12 +5,12 @@ module.exports =
 			hostname: 'localhost'
 			base: ['<%= config.app %>', '.']
 			open: true
-	docs:
-		options:
-			hostname: 'localhost'
-			base: '<%= config.docs %>/gen'
-			open: true
-			keepalive: true
+	# docs:
+	# 	options:
+	# 		hostname: 'localhost'
+	# 		base: '<%= config.docs %>/gen'
+	# 		open: true
+	# 		keepalive: true
 	# test:
 	# 	options:
 	# 		open: false

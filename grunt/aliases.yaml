@@ -41,7 +41,7 @@ test:
 docs:
   description: 'Look at the documenation.'
   tasks:
-    - 'connect:docs'
+    - 'open:docs'
 
 build-files:
   description: 'Builds all code from source.'

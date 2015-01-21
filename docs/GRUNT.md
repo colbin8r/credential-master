@@ -64,7 +64,7 @@ If your code has bugs, this is a great place to start finding them.
 
 ## `docs` ##
 
-The docs task gives you a quick look at the documentation and styleguide. It will regenerate a fresh set of documentation before viewing. It serves the docs from a local web server for your viewing pleasure.
+The docs task gives you a quick look at the documentation and styleguide. It doesn't use a server--it just opens the folder in Google Chrome.
 
 ## `bowerRequirejs` ##
 
