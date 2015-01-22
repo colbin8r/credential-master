@@ -31,3 +31,9 @@ module.exports =
 		tasks: ['mochaTest']
 		options:
 			spawn: no
+	index:
+		files: [
+			'<%= config.app %>/index.html',
+		]
+		options:
+			livereload: yes
