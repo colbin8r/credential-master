@@ -10,3 +10,5 @@ module.exports =
 		src: '{,*/}*.{scss,sass}',
 		dest: '<%= config.app %>/styles',
 		ext: '.css',
+		options:
+			loadPath: ['<%= config.src %>/styles', 'bower_components']
