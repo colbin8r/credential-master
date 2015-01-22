@@ -1,5 +1,11 @@
-// Test comment in test.scss
+/* ==========================================================================
+   Imports
+   ========================================================================== */
 
+@import "bootswatch-scss/flatly/variables";
 // bower:scss
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
+@import "bootswatch-scss/flatly/bootswatch";
+
+@import "partials/_navbar";
