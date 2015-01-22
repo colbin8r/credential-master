@@ -1,0 +1,30 @@
+/* ==========================================================================
+   Top Navigation Bar Styles
+   ========================================================================== */
+
+/* Add body padding to compensate for the fixed/stickied bar */
+body {
+	padding-top: 60px;
+}
+
+#navbar {
+	/* Icon sizing */
+	a.btn, .glyphicon {
+		font-size: 2em;
+		line-height: .5em;
+	}
+
+	/* Search form bar */
+	#search-form {
+		padding-left: 0;
+	}
+	
+	/* Align the brand to the center of the bar */
+	.navbar-brand {
+		left: 0;
+		margin: auto;
+		position: absolute;
+		text-align: center;
+		width: 100%;
+	}
+}
