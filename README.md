@@ -7,6 +7,7 @@ Credential Master is a web app (in active development) to manage sets of usernam
 ## Project Status ##
 
 [![Build Status](https://travis-ci.org/colbin8r/credential-master.svg?branch=develop)](https://travis-ci.org/colbin8r/credential-master)
+[![Release Version](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/colbin8r/credential-master/)
 
 ## Directory Structure ##
 
