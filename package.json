@@ -9,7 +9,7 @@
     "grunt-bower-requirejs": "^2.0.0",
     "grunt-bump": "0.0.16",
     "grunt-coffeelint": "0.0.13",
-    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-clean": "gruntjs/grunt-contrib-clean#v0.6.0",
     "grunt-contrib-coffee": "^0.12.0",
     "grunt-contrib-concat": "^0.5.0",
     "grunt-contrib-connect": "^0.9.0",

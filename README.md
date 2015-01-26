@@ -4,6 +4,10 @@ Credential Master is a web app (in active development) to manage sets of usernam
 
 (C) 2015 Colby Rogness. All Rights Reserved.
 
+## Project Status ##
+
+[![Build Status](https://travis-ci.org/colbin8r/credential-master.svg?branch=develop)](https://travis-ci.org/colbin8r/credential-master)
+
 ## Directory Structure ##
 
 ### `app` ###
